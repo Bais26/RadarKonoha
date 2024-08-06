@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from 'axios';  
 
 function Home() {
   const [news, setNews] = useState([]);
@@ -23,15 +23,16 @@ function Home() {
 
     fetchNews();
   }, []);
+  
   return (
-    <div>
+    <div className='container mx-auto py-8'>
       <h1>Berita Terkini</h1>
-      <div className="news-list">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {news.map((post, index) => (
-          <div key={index} className="news-item">
-            <img src={post.thumbnail} alt={post.title} className="thumbnail" />
-            <h2>{post.title}</h2>
-            <p>{post.pubDate}</p>
+          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <img src={post.thumbnail} alt={post.title} className="w-full object-cover" />
+            <h2 className='text-gray-600'>{post.title}</h2>
+            <p className='text-gray-600 text-xs mt-2'>{post.pubDate}</p>
           </div>
         ))}
       </div>

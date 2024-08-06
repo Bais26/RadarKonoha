@@ -1,10 +1,12 @@
 import React from 'react'
+import BlogPage from '../component/BlogPage'
+import Category from '../component/Category'
 
 function Blogs() {
   return (
     <div className=''>
-        <div className='py-40 bg-black text-white'>
-        <h2 className='text-center text-7xl font-bold font-popins'>Blog Page</h2>
+        <div>
+          <BlogPage/>
         </div>
     </div>
   )

@@ -73,7 +73,7 @@ export default function Navbar() {
                     )}
                 </div>
                 <div className="bg-second p-1 px-10 rounded-lg">
-                    <a href="/login">Login</a>
+                    <a href="/register">Daftar Penulis</a>
                 </div>
             </div>
         </div>

@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BlogCard from './BlogCard';
+import { useParams } from 'react-router-dom';
 
-function Home() {
+function NewsList() {
   const [news, setNews] = useState([]);
+  const { type } = useParams(); // Mendapatkan parameter kategori dari URL
 
   useEffect(() => {
     // Fungsi untuk mengambil data dari API menggunakan Axios
     const fetchNews = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/antara/terbaru/');
+        const response = await axios.get(`http://localhost:3333/antara/${type}/`);
         
         // Memeriksa apakah API berhasil merespon
         if (response.data.success) {
@@ -22,21 +25,15 @@ function Home() {
     };
 
     fetchNews();
-  }, []);
+  }, [type]); // Memperbarui data saat kategori berubah
+
   return (
-    <div>
-      <h1>Berita Terkini</h1>
-      <div className="news-list">
-        {news.map((post, index) => (
-          <div key={index} className="news-item">
-            <img src={post.thumbnail} alt={post.title} className="thumbnail" />
-            <h2>{post.title}</h2>
-            <p>{post.pubDate}</p>
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {news.map((post, index) => (
+        <BlogCard key={index} post={post} />
+      ))}
     </div>
   );
 }
 
-export default Home;
+export default NewsList;

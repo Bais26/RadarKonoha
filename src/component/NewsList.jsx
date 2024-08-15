@@ -1,39 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import BlogCard from './BlogCard';
 import { useParams } from 'react-router-dom';
+import BlogCard from './BlogCard';
 
-function NewsList() {
+const NewsList = () => {
+  const { source, category } = useParams();
   const [news, setNews] = useState([]);
-  const { type } = useParams(); // Mendapatkan parameter kategori dari URL
 
   useEffect(() => {
-    // Fungsi untuk mengambil data dari API menggunakan Axios
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`http://localhost:3333/antara/${type}/`);
+        const response = await axios.get(`http://localhost:3333/${source}/${category}/`);
         
-        // Memeriksa apakah API berhasil merespon
         if (response.data.success) {
           setNews(response.data.data.posts);
         } else {
-          console.error('Gagal mengambil data berita');
+          console.error('Failed to fetch news');
         }
       } catch (error) {
-        console.error('Terjadi kesalahan saat mengambil data berita:', error);
+        console.error('Error fetching news:', error);
       }
     };
 
     fetchNews();
-  }, [type]); // Memperbarui data saat kategori berubah
+  }, [source, category]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {news.map((post, index) => (
-        <BlogCard key={index} post={post} />
-      ))}
+      {news.length > 0 ? (
+        news.map((post, index) => (
+          <BlogCard key={index} post={post} />
+        ))
+      ) : (
+        <p>No news available</p>
+      )}
     </div>
   );
-}
+};
 
 export default NewsList;

@@ -6,12 +6,9 @@ function Home() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    // Fungsi untuk mengambil data dari API menggunakan Axios
     const fetchNews = async () => {
       try {
-        const response = await axios.get('https://api-berita-indonesia-gamma.vercel.app/');
-        
-        // Memeriksa apakah API berhasil merespon
+        const response = await axios.get('https://api-berita-indonesia-gamma.vercel.app/antara/terbaru');
         if (response.data.success) {
           setNews(response.data.data.posts);
         } else {

@@ -8,7 +8,7 @@ function NavigationMenu() {
   const [dataActive, setDataActive] = useState([]);
 
   useEffect(() => {
-    axios.get('https://api-berita-indonesia-839qr56wu-bais-projects-84e5a046.vercel.app/')
+    axios.get('https://api-berita-indonesia-gamma.vercel.app/')
       .then(response => {
         const endpointsData = response.data.endpoints.map(endpoint => ({
           name: endpoint.name,

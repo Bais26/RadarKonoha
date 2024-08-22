@@ -10,7 +10,7 @@ const NewsList = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`https://api-berita-indonesia-839qr56wu-bais-projects-84e5a046.vercel.app/${source}/${category}/`);
+        const response = await axios.get(`https://api-berita-indonesia-gamma.vercel.app/${source}/${category}/`);
         
         if (response.data.success) {
           setNews(response.data.data.posts);

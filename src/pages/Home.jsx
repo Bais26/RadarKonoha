@@ -9,7 +9,7 @@ function Home() {
     // Fungsi untuk mengambil data dari API menggunakan Axios
     const fetchNews = async () => {
       try {
-        const response = await axios.get('http://localhost:3333/antara/terbaru/');
+        const response = await axios.get('https://radar-konoha.vercel.app/');
         
         // Memeriksa apakah API berhasil merespon
         if (response.data.success) {

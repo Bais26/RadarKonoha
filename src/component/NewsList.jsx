@@ -17,7 +17,7 @@ const NewsList = () => {
         } else {
           console.error('Failed to fetch news');
         }
-      } catch (error) {
+      } catch (error) {l
         console.error('Error fetching news:', error);
       }
     };

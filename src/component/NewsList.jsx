@@ -10,14 +10,14 @@ const NewsList = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`http://localhost:3333/${source}/${category}/`);
+        const response = await axios.get(`https://api-berita-indonesia-839qr56wu-bais-projects-84e5a046.vercel.app/${source}/${category}/`);
         
         if (response.data.success) {
           setNews(response.data.data.posts);
         } else {
           console.error('Failed to fetch news');
         }
-      } catch (error) {l
+      } catch (error) {
         console.error('Error fetching news:', error);
       }
     };
